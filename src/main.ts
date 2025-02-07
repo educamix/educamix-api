@@ -6,6 +6,8 @@ import { config } from 'dotenv';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors();
+
   const config = new DocumentBuilder()
     .setTitle('Educamix API')
     .setDescription('API educacional para o projeto Educamix')
