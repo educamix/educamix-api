@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Question } from './questions.entity';
 
 @Entity('systb_materias')
 export class Subject {
@@ -7,4 +8,7 @@ export class Subject {
 
   @Column()
   nome: string;  
+
+  @OneToMany(() => Question, (question) => question.subject)
+  questions: Question[];
 }
