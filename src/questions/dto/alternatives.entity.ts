@@ -5,13 +5,12 @@ export class Alternative {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Question)
-  @JoinColumn({ name: 'idPergunta' })
-  question: Question; 
-
   @Column()
   texto: string; 
 
   @Column()
   correta: boolean; 
+
+  @ManyToOne(() => Question, (question) => question.alternatives, { onDelete: 'CASCADE' })
+  question: Question;
 }

@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
 import { Subject } from './subject.entity';  
+import { Alternative } from './alternatives.entity';
 
 @Entity('tb_perguntas')
 export class Question {
@@ -15,4 +16,7 @@ export class Question {
 
   @Column()
   nivelDificuldade: number;
+
+  @OneToMany(() => Alternative, (alternative) => alternative.question, { cascade: true, eager: true })
+  alternatives: Alternative[];
 }

@@ -17,14 +17,14 @@ import { OperationalModule } from './operational/operational.module';
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.SUPABASE_HOST,
-      port: 5432,
-      username: process.env.SUPABASE_USER,
-      password: process.env.SUPABASE_PASSWORD,
-      database: process.env.SUPABASE_DATABASE,
+      url: process.env.SUPABASE_URL,
       entities: [User, Question, Alternative, Subject, Profile, UserHistory, UserAttempt],  
       synchronize: true,
-      ssl: { rejectUnauthorized: false }, 
+      extra: {
+        ssl: {
+          rejectUnauthorized: false, 
+        },
+      },
     }),
     QuestionsModule,
     UsersModule,
